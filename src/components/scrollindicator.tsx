@@ -21,7 +21,7 @@ export default function ScrollIndicator() {
     const [orientation, setOrientation] = useState(true);
 
     return (
-      <motion.div animate={bounceAnimation} className="fixed bottom-5 w-full flex justify-center items-center">
+      <motion.div animate={bounceAnimation} className="fixed bottom-5 w-full flex justify-center items-center z-">
         <Image 
           src={orientation ? "/graphics/scrollindicator.svg" : "/graphics/scrollindicator-rot.svg"}
           alt="scroll-indicator" 

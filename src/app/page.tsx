@@ -9,23 +9,23 @@ import Welcome from "@/components/welcome";
 
 export default function Home() {
 
-  useEffect(() => {
-    const checkCookie = () => {
-      const cookieValue = document.cookie
-        .split('; ')
-        .find(row => row.startsWith('user'))
-        ?.split('=')[1];
+  // useEffect(() => {
+  //   const checkCookie = () => {
+  //     const cookieValue = document.cookie
+  //       .split('; ')
+  //       .find(row => row.startsWith('user'))
+  //       ?.split('=')[1];
 
-      if (cookieValue) {
-        console.log('Cookie exists:', cookieValue);
-      } else {
-        // Not logged in
-        redirect('/login');
-      }
-    };
+  //     if (cookieValue) {
+  //       console.log('Cookie exists:', cookieValue);
+  //     } else {
+  //       // Not logged in
+  //       redirect('/login');
+  //     }
+  //   };
 
-    checkCookie();
-  }, []);
+  //   checkCookie();
+  // }, []);
 
 
   
