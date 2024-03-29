@@ -1,12 +1,13 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect, useContext } from "react";
-import { AuthContext } from "../contexts/auth.context";
+import {AnimatePresence, motion} from "framer-motion";
+import {useContext, useEffect, useState} from "react";
+import {AuthContext} from "../contexts/auth.context";
 import Button from "./button";
 import Header from "./header";
 import SubHeader from "./subdomain-header";
-import { GetDomains, PutDomains } from "@/api";
+import {PutDomains} from "@/api";
+import {Bounce, toast} from "react-toastify";
 
 const dropdownVariants = {
   key: "div",
@@ -125,7 +126,17 @@ export default function JoinTeam(props: {
               onClick={() => {
                 onClick(props.teamName);
                 if (emailValue === undefined || accessToken === undefined) {
-                  alert("Please Login Again and Try!!");
+                  toast.error("Please login and try", {
+                    position: "bottom-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "colored",
+                    transition: Bounce,
+                  });
                 } else {
                   PutDomains(
                     selectedDomains,

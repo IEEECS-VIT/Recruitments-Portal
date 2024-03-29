@@ -1,11 +1,11 @@
 "use client";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import {AnimatePresence, motion} from "framer-motion";
 import "./hamburger.css";
-import { HamNavLink, HamNavLinkLogout, Navlink } from "../navlink";
-import { usePathname, useRouter } from "next/navigation";
+import {HamNavLink, HamNavLinkLogout, Navlink} from "../navlink";
+import {usePathname, useRouter} from "next/navigation";
 import Image from "next/image";
-import { useState } from "react";
+import {useState} from "react";
 
 const dropdownVariants = {
   key: "div",
@@ -88,9 +88,7 @@ export default function Nav() {
           </AnimatePresence>
         )}
         <div id="logo" className="size-16 ml-[5%] z-[31]">
-          <Link href="/">
             <Image src="/logo.svg" alt="IEEECS Logo" width={100} height={100} />
-          </Link>
         </div>
         <button
           className={`${

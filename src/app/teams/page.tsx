@@ -3,11 +3,11 @@ import JoinTeam from "@/components/joining-page";
 import ScrollIndicator from "@/components/scrollindicator";
 import Button from "@/components/button";
 import Link from "next/link";
-import { useState, useEffect, useContext } from "react";
-import { GetDomains } from "@/api";
+import {useEffect, useState} from "react";
+import {GetDomains} from "@/api";
 import Loader from "@/components/loader";
-import { redirect } from "next/navigation";
-import { AuthContext } from "@/contexts/auth.context";
+import {redirect} from "next/navigation";
+import {Bounce, toast} from "react-toastify";
 
 export default function Teams() {
   
@@ -29,7 +29,18 @@ export default function Teams() {
     const fetchData = async () => {
       setLoading(true);
       if (!emailValue || !accessToken) {
-        alert("Email or Access Token not found in cookies");
+        toast.error("Email or Access Token not found in cookies", {
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Bounce,
+        });
+
         setLoading(false);
         return;
       } else {

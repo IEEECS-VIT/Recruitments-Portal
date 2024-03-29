@@ -1,5 +1,6 @@
 "use client";
 import axios from "axios";
+import {Bounce, toast} from "react-toastify";
 
 export const PutDomains = async (
   selectedDomains: string[],
@@ -20,12 +21,46 @@ export const PutDomains = async (
       }
     );
     if (response.status === 200) {
-      alert("Successfully submitted");
+      //add toast here
+
+      toast.success('Successfully submitted', {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
+
     } else {
-      alert("Failed to submit");
+      //add toast here
+      toast.error('Failed to submit', {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
     }
   } catch (error: Error | any) {
-    alert(error.message);
+    toast.error(error.message, {
+      position: "bottom-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      transition: Bounce,
+    });
   }
 };
 
@@ -45,7 +80,6 @@ export const GetDomains = async (emailValue: string, accessToken: string) => {
       throw new Error(`Request failed with status ${response.status}`);
     }
   } catch (error: Error | any) {
-    console.error(error.message);
     throw error;
   }
 };

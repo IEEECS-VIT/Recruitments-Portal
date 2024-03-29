@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
+import {useEffect, useState} from 'react';
 import axios from 'axios';
+import {Bounce, toast} from "react-toastify";
 
 interface Response {
   _id: string;
@@ -28,7 +29,17 @@ const ResponseDetails = ({ email, onClose }: { email: string; onClose: () => voi
           ?.split('=')[1];
 
         if (!emailValue || !accessToken) {
-          console.error('Email or Access Token not found in cookies');
+          toast.error('Email or Access Token not found in cookies', {
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            transition: Bounce,
+          });
           return;
         }
 
@@ -42,7 +53,18 @@ const ResponseDetails = ({ email, onClose }: { email: string; onClose: () => voi
         });
         setResponseDetails(response.data);
       } catch (error) {
-        console.error('Error fetching response details:', error);
+          toast.error('Error fetching response details:', {
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Bounce,
+        });
+
       }
     };
 

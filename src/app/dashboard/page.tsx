@@ -1,5 +1,6 @@
 "use client";
 import Quizcard from "@/components/quizcard";
+import styles from "./dashboard.module.css";
 import { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import Loader from "@/components/loader";
@@ -109,7 +110,7 @@ export default function Dashboard() {
             <h1 className="ml-5 text-white text-center md:text-left font-striger text-3xl">
               Pending Quizzes
             </h1>
-            <div className="flex flex-col md:flex-row my-2">
+            <div className={` flex flex-col md:flex-row md:overflow-x-auto my-2 ${styles.scrollContainer}`}>
               {techsub_pending.length === 0 &&
               managementsub_pending.length === 0 &&
               designsub_pending.length === 0 ? (
@@ -147,12 +148,12 @@ export default function Dashboard() {
             </div>
           </div>
         </section>
-        <section className="md:h-[42vh] w-sbcreen px-5 md:px-20">
+        <section className="md:h-[42vh] w-screen px-5 md:px-20 mb-5 md:mb-0">
           <div className=" h-full w-full flex flex-col justify-center">
             <h1 className="ml-5 text-white text-center md:text-left font-striger text-3xl">
               Completed Quizzes
             </h1>
-            <div className="flex flex-col md:flex-row my-2">
+            <div className={`flex flex-col md:flex-row md:overflow-x-auto my-2  ${styles.scrollContainer}`}>
               {techsub_completed.length === 0 &&
               managementsub_completed.length === 0 &&
               designsub_completed.length === 0 ? (

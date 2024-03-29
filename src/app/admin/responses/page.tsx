@@ -1,8 +1,9 @@
 'use client';
 import dynamic from 'next/dynamic';
-import { useEffect, useState } from 'react';
+import {useEffect, useState} from 'react';
 import axios from 'axios';
 import ResponseDetails from './ResponseDetails';
+import {Bounce, toast} from "react-toastify";
 
 const Button = dynamic(() => import('@/components/button'), { ssr: false });
 
@@ -19,8 +20,17 @@ const StudentResponses: React.FC = () => {
       const response = await axios.get(`https://recruitments-portal-backend.vercel.app/${domain}`);
       setResponses(response.data);
     } catch (error) {
-      alert('Error fetching data');
-      console.error('Error fetching data:', error);
+      toast.error('Error fetching data', {
+        position: "bottom-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+        transition: Bounce,
+      });
     }
   };
 

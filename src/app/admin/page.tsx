@@ -1,11 +1,12 @@
 'use client';
 import Button from "@/components/button";
-import { firebaseConfig } from "@/firebase.config"
-import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, User } from "firebase/auth";
+import {firebaseConfig} from "@/firebase.config"
+import {initializeApp} from "firebase/app";
+import {getAuth, GoogleAuthProvider, signInWithPopup, signOut, User} from "firebase/auth";
 import axios from "axios";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import {useRouter} from "next/navigation";
+import {useEffect} from "react";
+import {Bounce, toast} from "react-toastify";
 
 function validateEmail(email: string | null) {
   if (typeof email === "undefined" || email === null) return false;
@@ -35,11 +36,31 @@ export default function AdminLogin() {
           // Redirect to admin dashboard if user is an admin
           router.push("/admin/dashboard");
         } else {
-          alert("User is not an admin");
+            toast.error('User is not an admin', {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
         }
       })
       .catch((error) => {
-        alert(error.message);
+          toast.error(error.message, {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+              transition: Bounce,
+          });
       });
   }
 
@@ -57,15 +78,34 @@ export default function AdminLogin() {
         const token = credential.accessToken;
         const user = result.user;
         if (!validateEmail(user.email)) {
-          alert("Please login with your admin email");
+            toast.error("Please login with admin email", {
+                position: "bottom-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "colored",
+                transition: Bounce,
+            });
           signOut(auth);
         } else {
           verifyAdminUser(user);
         }
       })
       .catch((error) => {
-        const errorMessage = error.message;
-        alert(errorMessage);
+          toast.error(error.message, {
+              position: "bottom-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+              transition: Bounce,
+          });
       });
   }
 
