@@ -41,7 +41,16 @@ export default function JoinTeam(props: {
       else document.body.style.overflow = "auto";
     }
   };
+  const setTitle = (title: string) => {
+    title = title.toLowerCase();
+    if (title === "ai/ml") return "aiml";
+    else if (title === "ui/ux") return "uiux";
+    else if (title === "graphic design") return "graphic";
+    else if (title === "p&m") return "pnm";
+    else return title;
+  };
   const handleClick = (props: { title: string }) => {
+    props.title = setTitle(props.title);
     setSelectedDomains((prevSelected: string[]) => {
       if (prevSelected.includes(props.title)) {
         if (typeof window !== "undefined") {
@@ -105,7 +114,7 @@ export default function JoinTeam(props: {
                 >
                   <SubHeader
                     title={title}
-                    id={title}
+                    id={setTitle(title)}
                     selected={selectedDomains}
                   />
                 </motion.div>
